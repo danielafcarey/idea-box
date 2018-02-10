@@ -1,13 +1,13 @@
 var $inputTitle = $('.input-title');
 var $inputBody = $('.input-body');
 var $saveButton = $('.save-button');
-var $searchInput = $('.search-ideas');
+var $searchInput = $('.search-ideas-input');
 var $ideaList = $('.idea-list');
 
 $inputTitle.on('keyup', enableSave);
 $inputBody.on('keyup', enableSave);
 $saveButton.on('click', createIdea);
-$searchInput.on('keyup',  )
+$searchInput.on('keyup', searchIdeas);
 $ideaList.on('click', '.delete-button', deleteIdea);
 $ideaList.on('click', '.upvote-button', upvoteIdea);
 $ideaList.on('click', '.downvote-button', downvoteIdea);
@@ -25,9 +25,9 @@ function createIdea(e) {
   var userInputBody = $inputBody.val();
   var userInputTitle = $inputTitle.val();
   $('.idea-list').prepend(`<article class="idea">
-      <h2>${userInputTitle}</h2>
+      <h2 contenteditable="true">${userInputTitle}</h2>
       <button class="delete-button"></button>
-      <p class="body-text">${userInputBody}</p>
+      <p class="body-text" contenteditable="true">${userInputBody}</p>
       <div>
         <button class="upvote-button"></button>
         <button class="downvote-button"></button>
@@ -37,12 +37,26 @@ function createIdea(e) {
       <hr />
     </article>`);
   resetForm();
+  editIdea();
 }
+
+// $(document).ready(function() {
+function editIdea() {
+  $('h2, .body-text').keydown(function(e) {
+    console.log(e.which);
+    if (e.which === 13) {
+      $(this).blur();
+      return false;
+    }
+  });
+}
+// });
 
 function resetForm() {
   $inputTitle.val('');
   $inputBody.val('');
   $inputTitle.focus();
+  $saveButton.attr('disabled', '')
 }
 
 function deleteIdea() {
@@ -69,5 +83,10 @@ function downvoteIdea() {
   } else if (setQuality === 'plausible') {
     $('.quality').html('swill');
   }
+}
+
+function searchIdeas() {
+  var newSearchInput = $searchInput.val();
+  console.log(
 }
 
