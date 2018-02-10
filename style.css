@@ -30,14 +30,20 @@ span {
   color: #00a79d;
 }
 
-input {
+input,
+textarea {
   font-size: 22px;
   display: block;
   margin: 0 auto 15px auto;
-  border-color: #d1d8d9;
-  border-style: solid;
+  border: 2px solid #d1d8d9;
   width: 560px;
   padding-left: 5px;
+  overflow: scroll;
+}
+
+textarea {
+  resize: none;
+  height: 32px;
 }
 
 hr {
@@ -55,14 +61,18 @@ h3 {
   padding-bottom: 20px
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: #c5c6c8;
 }
 
 div {
   line-height: 1px;
 }
-
+section {
+  max-height: 100vh;
+  overflow: scroll;
+}
 .save-button {
   background-color: #00a79d;
   color: white;
@@ -136,4 +146,30 @@ div {
 .save-button:hover {
   background-color: #045e55;
   transition: 1s;
+}
+
+@media (max-width: 740px) {
+  input,
+  textarea,
+  .idea {
+    width: 74%;
+  }
+  .save-button {
+    width: 78%;
+  }
+}
+@media (max-width: 450px) {
+  header {
+    height: 280px;
+  }
+  h1 { 
+  font-size: 33px;
+  padding: 15px 0;
+  }
+  .input-body {
+    height: 75px;
+  }
+  .search-ideas {
+    margin-top: 15px;
+  }
 }
