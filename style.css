@@ -1,0 +1,139 @@
+* { 
+  font-family: 'Open Sans', sans-serif; 
+}
+body {
+  margin: 0;
+}
+
+header {
+  background-color: #e5f3f2;
+  height: 284px;
+}
+
+h1, 
+h2,
+h3 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700;
+  color: #6d6e71;
+}
+
+h1 {
+  margin: 0;
+  text-align: center;
+  padding: 30px 0;
+  font-size: 44px;
+}
+
+span {
+  font-family: 'Roboto Slab', serif;
+  color: #00a79d;
+}
+
+input {
+  font-size: 22px;
+  display: block;
+  margin: 0 auto 15px auto;
+  border-color: #d1d8d9;
+  border-style: solid;
+  width: 560px;
+  padding-left: 5px;
+}
+
+hr {
+  color: #d1d3d4;
+}
+
+h2 {
+  display: inline-block;
+  margin: 0;
+}
+
+h3 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-bottom: 20px
+}
+
+input::placeholder {
+  color: #c5c6c8;
+}
+
+div {
+  line-height: 1px;
+}
+
+.save-button {
+  background-color: #00a79d;
+  color: white;
+  width: 570px; 
+  font-size: 22px;
+  margin: 0 auto;
+  display: block;
+  
+}
+
+.search-ideas {
+  margin-top: 29px;
+  margin-bottom: 40px;
+}
+.delete-button,
+.upvote-button,
+.downvote-button {
+  height: 30px;
+  width: 30px;
+  border: none;
+}
+
+.delete-button {
+  background: url("delete.svg") no-repeat;
+  float: right
+
+}
+.idea {
+  width: 570px;
+  margin: 20px auto;
+
+}
+.quality {
+  display: inline-block;
+  vertical-align: middle; 
+  margin-top: 0;
+  font-size: 19px;
+  color: #6d6e71;
+}
+
+.body-text {
+  color: #939598;
+  vertical-align: middle;
+}
+
+.upvote-button {
+  background: url("upvote.svg") no-repeat;
+  margin-right: 15px;
+}
+
+.downvote-button {
+  background: url("downvote.svg") no-repeat;
+  margin-right: 15px;
+}
+
+.delete-button:hover {
+  background: url("delete-hover.svg");
+  transition: 1s;
+}
+
+.upvote-button:hover {
+  background: url("upvote-hover.svg");
+  transition: 1s;
+}
+
+.downvote-button:hover {
+  background: url("downvote-hover.svg");
+  transition: 1s;
+}
+
+.save-button:hover {
+  background-color: #045e55;
+  transition: 1s;
+}
