@@ -6,7 +6,7 @@ var $ideaList = $('.idea-list');
 
 $inputTitle.on('keyup', enableSave);
 $inputBody.on('keyup', enableSave);
-$saveButton.on('click', createIdea);
+$saveButton.on('click', generateIdea);
 $searchInput.on('keyup', searchIdeas);
 $ideaList.on('click', '.delete-button', deleteIdea);
 $ideaList.on('click', '.upvote-button', upvoteIdea);
@@ -19,20 +19,29 @@ function enableSave() {
     $saveButton.attr('disabled', '')
   }
 }
+function IdeaFactory(title, body) {
+  this.id = $.now();
+  this.title = title;
+  this.body = body;
+  this.quality = 'swill'
+}
 
-function createIdea(e) {
+
+function generateIdea(e) {
   e.preventDefault();
+  var newIdea = new IdeaFactory($inputTitle.val(), $inputBody.val());
+  console.log(newIdea)
   var userInputBody = $inputBody.val();
   var userInputTitle = $inputTitle.val();
-  $('.idea-list').prepend(`<article class="idea">
-      <h2 contenteditable="true">${userInputTitle}</h2>
+  $('.idea-list').prepend(`<article id="${newIdea.id}" class="idea">
+      <h2 contenteditable="true">${newIdea.title}</h2>
       <button class="delete-button"></button>
-      <p class="body-text" contenteditable="true">${userInputBody}</p>
+      <p class="body-text" contenteditable="true">${newIdea.body}</p>
       <div>
         <button class="upvote-button"></button>
         <button class="downvote-button"></button>
         <h3>quality:</h3>
-        <p class="quality">swill</p>
+        <p class="quality">${newIdea.quality}</p>
       </div>  
       <hr />
     </article>`);
@@ -87,6 +96,5 @@ function downvoteIdea() {
 
 function searchIdeas() {
   var newSearchInput = $searchInput.val();
-  console.log(
 }
 
