@@ -19,6 +19,7 @@ function enableSave() {
     $saveButton.attr('disabled', '')
   }
 }
+
 function IdeaFactory(title, body) {
   this.id = $.now();
   this.title = title;
@@ -49,7 +50,6 @@ function generateIdea(e) {
   editIdea();
 }
 
-// $(document).ready(function() {
 function editIdea() {
   $('h2, .body-text').keydown(function(e) {
     console.log(e.which);
@@ -59,7 +59,6 @@ function editIdea() {
     }
   });
 }
-// });
 
 function resetForm() {
   $inputTitle.val('');
@@ -73,24 +72,23 @@ function deleteIdea() {
 }
 
 function upvoteIdea() {
-  var setQuality = $('.quality').html();
-  console.log(setQuality);
+  var setQuality = $(this).siblings('p');
 
-  if (setQuality === 'swill') {
-    $('.quality').html('plausible');
-  } else if (setQuality === 'plausible') {
-    $('.quality').html('genius');
+  if (setQuality.text() === 'swill') {
+    setQuality.text('plausible');
+  } else if (setQuality.text() === 'plausible') {
+    setQuality.text('genius');
   }
   
 }
 
 function downvoteIdea() {
-  var setQuality = $('.quality').html();
+  var setQuality = $(this).siblings('p');
 
-  if (setQuality === 'genius') {
-    $('.quality').html('plausible');
-  } else if (setQuality === 'plausible') {
-    $('.quality').html('swill');
+  if (setQuality.text() === 'genius') {
+    setQuality.text('plausible');
+  } else if (setQuality.text() === 'plausible') {
+    setQuality.text('swill');
   }
 }
 
