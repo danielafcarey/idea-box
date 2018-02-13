@@ -162,25 +162,33 @@ function downvoteIdea() {
 }
 
 // searchIdeas function to run search on all 3 fields
-
 function searchIdeas() {
+  $('.idea').hide();
+  searchTitles();
+  searchBodies();
+}
+function searchTitles() {
   var $newSearchInput = $searchInput.val().toUpperCase();
   var $listOfTitles = $('h2');
   for (var i = 0; i < $listOfTitles.length; i++) {
     var $upperCaseTitle = $listOfTitles[i].innerText.toUpperCase()
-
-    // if the search input value includes anything in card title
+    console.log($upperCaseTitle)
     if (($upperCaseTitle).includes($newSearchInput)) {
-      // show .closest card
-        $(($listOfTitles[i]).closest('.idea')).show();
-    } else {
-      $(($listOfTitles[i]).closest('.idea')).hide();
+      $(($listOfTitles[i]).closest('.idea')).show();
     } 
   }
-
 }
-
-
+function searchBodies() {
+  var $newSearchInput = $searchInput.val().toUpperCase();
+  var $listOfBodies = $('.body-text');
+  for (var i = 0; i < $listOfBodies.length; i++) {
+    var $upperCaseBody = $listOfBodies[i].innerText.toUpperCase()
+    console.log($upperCaseBody)
+    if (($upperCaseBody).includes($newSearchInput)) {
+      $(($listOfBodies[i]).closest('.idea')).show();
+    } 
+  }
+}
 
 
 
