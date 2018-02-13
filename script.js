@@ -46,9 +46,29 @@ function generateIdea(e) {
       </div>  
       <hr />
     </article>`);
+
+  var ideaToStore = {
+    id: newIdea.id,
+    title: newIdea.title,
+    body: newIdea.body,
+    quality: newIdea.quality,
+  };
+  var stringifedIdeaToStore = JSON.stringify(ideaToStore);
+
+  localStorage.setItem(newIdea.id, stringifedIdeaToStore);
+
   resetForm();
   editIdea();
 }
+
+//JSONify object and set in local storage
+// function setInLocalStorage() {
+//   var ideaToStore = {
+//     id: 
+//   }
+// }
+
+//get from local storage and de-JSONify object
 
 function editIdea() {
   $('h2, .body-text').keydown(function(e) {
