@@ -29,6 +29,20 @@ $(document).ready(function() {
     </article>`);
   }
    editIdea();
+
+  
+  // get array of items (idea cards)
+
+  // use .filter() on the values
+  // those will be === true
+  // assign that boolean/value to the hidden attribute for each card
+  // var ideaCardsArray = $('.idea')
+  // console.log(ideaCardsArray.indexOf('peanut'))
+
+  // console.log(matchingIdeaCards)
+  // console.log(ideaCardsArray[i].innerText)
+  // console.log($(ideaCards:contains('peanut')));
+
 });
 
 
@@ -51,7 +65,6 @@ function IdeaFactory(title, body) {
 function generateIdea(e) {
   e.preventDefault();
   var newIdea = new IdeaFactory($inputTitle.val(), $inputBody.val());
-  console.log(newIdea)
   var userInputBody = $inputBody.val();
   var userInputTitle = $inputTitle.val();
   $('.idea-list').prepend(`<article id="${newIdea.id}" class="idea">
@@ -84,37 +97,19 @@ function setInLocalStorage(newStorage) {
   localStorage.setItem(newStorage.id, stringifedIdeaToStore);
 }
 
-//get from local storage and de-JSONify object
-// function getFromLocalStorage() {
-//   var retrievedIdea = $(this).closest('.idea');
-//   console.log(this)
-// }
-
 function editIdea() {
   $('h2, .body-text').keydown(function(e) {
     if (e.which === 13) {
       $(this).blur();
     var changedTarget = $(this).attr('name');
-    console.log(changedTarget);
     var userChange = e.target.innerText;  
     var ideaId = ($(this).parent('.idea'))[0].id;
     var retrievedIdea = localStorage.getItem(ideaId);
     var parsedIdea = JSON.parse(retrievedIdea);
     parsedIdea[changedTarget] = userChange;
-    console.log(userChange);
-    console.log(ideaId);
-    console.log(parsedIdea)
     localStorage.setItem(ideaId, JSON.stringify(parsedIdea))
      } 
   });
-  // var ideaId = ($(this).parent('.idea'))[0].id;
-  // var retrievedIdea = localStorage.getItem(ideaId);
-  // var parsedIdea = JSON.parse(retrievedIdea);
-  // var ideaQuality = parsedIdea.quality;
-  // ideaQuality = setQuality.text();
-  // parsedIdea.quality = ideaQuality;
-  // var updatedQuality = JSON.stringify(parsedIdea);
-  // localStorage.setItem(ideaId, updatedQuality);
 }
 
 function resetForm() {
@@ -146,8 +141,6 @@ function upvoteIdea() {
   parsedIdea.quality = ideaQuality;
   var updatedQuality = JSON.stringify(parsedIdea);
   localStorage.setItem(ideaId, updatedQuality);
-
-  
 }
 
 function downvoteIdea() {
@@ -166,10 +159,34 @@ function downvoteIdea() {
   parsedIdea.quality = ideaQuality;
   var updatedQuality = JSON.stringify(parsedIdea);
   localStorage.setItem(ideaId, updatedQuality);
-
 }
+
+// searchIdeas function to run search on all 3 fields
 
 function searchIdeas() {
-  var newSearchInput = $searchInput.val();
+  var $newSearchInput = $searchInput.val().toUpperCase();
+  var $listOfTitles = $('h2');
+  for (var i = 0; i < $listOfTitles.length; i++) {
+    var $upperCaseTitle = $listOfTitles[i].innerText.toUpperCase()
+
+    // if the search input value includes anything in card title
+    if (($upperCaseTitle).includes($newSearchInput)) {
+      // show .closest card
+        $(($listOfTitles[i]).closest('.idea')).show();
+    } else {
+      $(($listOfTitles[i]).closest('.idea')).hide();
+    } 
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
 
