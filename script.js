@@ -47,27 +47,29 @@ function generateIdea(e) {
       <hr />
     </article>`);
 
-  setInLocalStorage();
+  setInLocalStorage(newIdea);
   resetForm();
   editIdea();
 }
 
 //JSONify object and set in local storage
-function setInLocalStorage() {
-  var newIdea = new IdeaFactory($inputTitle.val(), $inputBody.val());
-  var ideaToStore = {
-    id: newIdea.id,
-    title: newIdea.title,
-    body: newIdea.body,
-    quality: newIdea.quality,
+function setInLocalStorage(newStorage) {
+    var ideaToStore = {
+    id: newStorage.id,
+    title: newStorage.title,
+    body: newStorage.body,
+    quality: newStorage.quality,
   };
   var stringifedIdeaToStore = JSON.stringify(ideaToStore);
 
-  localStorage.setItem(newIdea.id, stringifedIdeaToStore);
+  localStorage.setItem(newStorage.id, stringifedIdeaToStore);
 }
 
 //get from local storage and de-JSONify object
-
+// function getFromLocalStorage() {
+//   var retrievedIdea = $(this).closest('.idea');
+//   console.log(this)
+// }
 
 function editIdea() {
   $('h2, .body-text').keydown(function(e) {
@@ -92,12 +94,14 @@ function deleteIdea() {
 
 function upvoteIdea() {
   var setQuality = $(this).siblings('p');
-
+  
   if (setQuality.text() === 'swill') {
     setQuality.text('plausible');
   } else if (setQuality.text() === 'plausible') {
     setQuality.text('genius');
   }
+  var ideaId = $(this).parents('.idea')
+  console.log(ideaId)
   
 }
 
