@@ -94,12 +94,16 @@ function editIdea() {
   $('h2, .body-text').keydown(function(e) {
     if (e.which === 13) {
       $(this).blur();
-    var changedTarget = e.target.name;
+    var changedTarget = $(this).attr('name');
+    console.log(changedTarget);
     var userChange = e.target.innerText;  
     var ideaId = ($(this).parent('.idea'))[0].id;
     var retrievedIdea = localStorage.getItem(ideaId);
     var parsedIdea = JSON.parse(retrievedIdea);
     parsedIdea[changedTarget] = userChange;
+    console.log(userChange);
+    console.log(ideaId);
+    console.log(parsedIdea)
     localStorage.setItem(ideaId, JSON.stringify(parsedIdea))
      } 
   });
