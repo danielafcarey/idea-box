@@ -166,6 +166,7 @@ function searchIdeas() {
   $('.idea').hide();
   searchTitles();
   searchBodies();
+  searchQualities();
 }
 function searchTitles() {
   var $newSearchInput = $searchInput.val().toUpperCase();
@@ -189,6 +190,18 @@ function searchBodies() {
     } 
   }
 }
+
+function searchQualities() {
+  var $newSearchInput = $searchInput.val().toUpperCase();
+  var $listOfQualities = $('.quality');
+  for (var i = 0; i < $listOfQualities.length; i++) {
+    var $upperCaseQuality = $listOfQualities[i].innerText.toUpperCase()
+    console.log($upperCaseQuality)
+    if (($upperCaseQuality).includes($newSearchInput)) {
+      $(($listOfQualities[i]).closest('.idea')).show();
+    } 
+  }
+} 
 
 
 
