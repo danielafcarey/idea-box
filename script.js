@@ -79,7 +79,7 @@ function generateIdea(e) {
       </div>  
       <hr />
     </article>`);
-
+  editIdea();
   setInLocalStorage(newIdea);
   resetForm();
 }
@@ -98,10 +98,23 @@ function setInLocalStorage(newStorage) {
 }
 
 function editIdea() {
+     saveEdit();
   $('h2, .body-text').keydown(function(e) {
     if (e.which === 13) {
       $(this).blur();
-     } 
+     }
+    // var changedTarget = $(this).attr('name');
+    // var userChange = e.target.innerText;  
+    // var ideaId = ($(this).parent('.idea'))[0].id;
+    // var retrievedIdea = localStorage.getItem(ideaId);
+    // var parsedIdea = JSON.parse(retrievedIdea);
+    // parsedIdea[changedTarget] = userChange;
+    // localStorage.setItem(ideaId, JSON.stringify(parsedIdea))
+  });
+}
+
+function saveEdit() {
+  $('h2, .body-text').on('blur', function(e) {
     var changedTarget = $(this).attr('name');
     var userChange = e.target.innerText;  
     var ideaId = ($(this).parent('.idea'))[0].id;
@@ -109,11 +122,11 @@ function editIdea() {
     var parsedIdea = JSON.parse(retrievedIdea);
     parsedIdea[changedTarget] = userChange;
     localStorage.setItem(ideaId, JSON.stringify(parsedIdea))
-  });
+  })
 }
 
 function resetForm() {
-  $inputTitle.val('');
+  $inputTitle.val('');  
   $inputBody.val('');
   $inputTitle.focus();
   $saveButton.attr('disabled', '')
