@@ -15,34 +15,9 @@ $ideaList.on('click', '.downvote-button', downvoteIdea);
 $(document).ready(function() {
   for(var i = 0; i < localStorage.length; i++) {
     var storedIdea = JSON.parse(localStorage.getItem(localStorage.key(i)))
-    $('.idea-list').prepend(`<article id="${storedIdea.id}" class="idea">
-      <h2 contenteditable="true" name="title" aria-label="title">${storedIdea.title}</h2>
-      <button class="delete-button" aria-label="delete"></button>
-      <p class="body-text" contenteditable="true" name="body" aria-label="body">${storedIdea.body}</p>
-      <div>
-        <button class="upvote-button" aria-label="upvote"></button>
-        <button class="downvote-button" aria-label="downvote"></button>
-        <h3>quality:</h3>
-        <p class="quality" aria-label="quality">${storedIdea.quality}</p>
-      </div>  
-      <hr />
-    </article>`);
+  prependIdea(storedIdea);
   }
    editIdea();
-
-  
-  // get array of items (idea cards)
-
-  // use .filter() on the values
-  // those will be === true
-  // assign that boolean/value to the hidden attribute for each card
-  // var ideaCardsArray = $('.idea')
-  // console.log(ideaCardsArray.indexOf('peanut'))
-
-  // console.log(matchingIdeaCards)
-  // console.log(ideaCardsArray[i].innerText)
-  // console.log($(ideaCards:contains('peanut')));
-
 });
 
 
@@ -67,24 +42,27 @@ function generateIdea(e) {
   var newIdea = new IdeaFactory($inputTitle.val(), $inputBody.val());
   var userInputBody = $inputBody.val();
   var userInputTitle = $inputTitle.val();
-  $('.idea-list').prepend(`<article id="${newIdea.id}" class="idea">
-      <h2 contenteditable="true" name="title" aria-label="title">${newIdea.title}</h2>
-      <button class="delete-button" aria-label="delete"></button>
-      <p class="body-text" contenteditable="true" name="body" aria-label="body">${newIdea.body}</p>
-      <div>
-        <button class="upvote-button" aria-label="upvote"></button>
-        <button class="downvote-button" aria-label="downvote"></button>
-        <h3>quality:</h3>
-        <p class="quality" aria-label="quality">${newIdea.quality}</p>
-      </div>  
-      <hr />
-    </article>`);
+  prependIdea(newIdea)
   editIdea();
   setInLocalStorage(newIdea);
   resetForm();
 }
 
-//JSONify object and set in local storage
+function prependIdea (input) {
+  $('.idea-list').prepend(`<article id="${input.id}" class="idea">
+      <h2 contenteditable="true" name="title" aria-label="title">${input.title}</h2>
+      <button class="delete-button" aria-label="delete"></button>
+      <p class="body-text" contenteditable="true" name="body" aria-label="body">${input.body}</p>
+      <div>
+        <button class="upvote-button" aria-label="upvote"></button>
+        <button class="downvote-button" aria-label="downvote"></button>
+        <h3>quality:</h3>
+        <p class="quality" aria-label="quality">${input.quality}</p>
+      </div>  
+      <hr />
+    </article>`);
+}
+
 function setInLocalStorage(newStorage) {
     var ideaToStore = {
     id: newStorage.id,
@@ -103,13 +81,6 @@ function editIdea() {
     if (e.which === 13) {
       $(this).blur();
      }
-    // var changedTarget = $(this).attr('name');
-    // var userChange = e.target.innerText;  
-    // var ideaId = ($(this).parent('.idea'))[0].id;
-    // var retrievedIdea = localStorage.getItem(ideaId);
-    // var parsedIdea = JSON.parse(retrievedIdea);
-    // parsedIdea[changedTarget] = userChange;
-    // localStorage.setItem(ideaId, JSON.stringify(parsedIdea))
   });
 }
 
@@ -174,7 +145,6 @@ function downvoteIdea() {
   localStorage.setItem(ideaId, updatedQuality);
 }
 
-// searchIdeas function to run search on all 3 fields
 function searchIdeas() {
   $('.idea').hide();
   searchTitles();
@@ -182,41 +152,26 @@ function searchIdeas() {
   searchQualities();
 }
 function searchTitles() {
-  var $newSearchInput = $searchInput.val().toUpperCase();
-  var $listOfTitles = $('h2');
-  for (var i = 0; i < $listOfTitles.length; i++) {
-    var $upperCaseTitle = $listOfTitles[i].innerText.toUpperCase()
-    console.log($upperCaseTitle)
-    if (($upperCaseTitle).includes($newSearchInput)) {
-      $(($listOfTitles[i]).closest('.idea')).show();
-    } 
-  }
+  searchHelper('h2')
 }
 function searchBodies() {
-  var $newSearchInput = $searchInput.val().toUpperCase();
-  var $listOfBodies = $('.body-text');
-  for (var i = 0; i < $listOfBodies.length; i++) {
-    var $upperCaseBody = $listOfBodies[i].innerText.toUpperCase()
-    console.log($upperCaseBody)
-    if (($upperCaseBody).includes($newSearchInput)) {
-      $(($listOfBodies[i]).closest('.idea')).show();
-    } 
-  }
+ searchHelper('.body-text')
 }
 
 function searchQualities() {
+  searchHelper('.quality')
+} 
+
+function searchHelper(location) {
   var $newSearchInput = $searchInput.val().toUpperCase();
-  var $listOfQualities = $('.quality');
+  var $listOfQualities = $(location);
   for (var i = 0; i < $listOfQualities.length; i++) {
     var $upperCaseQuality = $listOfQualities[i].innerText.toUpperCase()
-    console.log($upperCaseQuality)
     if (($upperCaseQuality).includes($newSearchInput)) {
       $(($listOfQualities[i]).closest('.idea')).show();
     } 
   }
-} 
-
-
+}
 
 
 
