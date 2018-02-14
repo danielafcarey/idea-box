@@ -16,14 +16,14 @@ $(document).ready(function() {
   for(var i = 0; i < localStorage.length; i++) {
     var storedIdea = JSON.parse(localStorage.getItem(localStorage.key(i)))
     $('.idea-list').prepend(`<article id="${storedIdea.id}" class="idea">
-      <h2 contenteditable="true" name="title">${storedIdea.title}</h2>
-      <button class="delete-button"></button>
-      <p class="body-text" contenteditable="true" name="body">${storedIdea.body}</p>
+      <h2 contenteditable="true" name="title" aria-label="title">${storedIdea.title}</h2>
+      <button class="delete-button" aria-label="delete"></button>
+      <p class="body-text" contenteditable="true" name="body" aria-label="body">${storedIdea.body}</p>
       <div>
-        <button class="upvote-button"></button>
-        <button class="downvote-button"></button>
+        <button class="upvote-button" aria-label="upvote"></button>
+        <button class="downvote-button" aria-label="downvote"></button>
         <h3>quality:</h3>
-        <p class="quality">${storedIdea.quality}</p>
+        <p class="quality" aria-label="quality">${storedIdea.quality}</p>
       </div>  
       <hr />
     </article>`);
@@ -68,14 +68,14 @@ function generateIdea(e) {
   var userInputBody = $inputBody.val();
   var userInputTitle = $inputTitle.val();
   $('.idea-list').prepend(`<article id="${newIdea.id}" class="idea">
-      <h2 contenteditable="true" name="title">${newIdea.title}</h2>
-      <button class="delete-button"></button>
-      <p class="body-text" contenteditable="true" name="body">${newIdea.body}</p>
+      <h2 contenteditable="true" name="title" aria-label="title">${newIdea.title}</h2>
+      <button class="delete-button" aria-label="delete"></button>
+      <p class="body-text" contenteditable="true" name="body" aria-label="body">${newIdea.body}</p>
       <div>
-        <button class="upvote-button"></button>
-        <button class="downvote-button"></button>
+        <button class="upvote-button" aria-label="upvote"></button>
+        <button class="downvote-button" aria-label="downvote"></button>
         <h3>quality:</h3>
-        <p class="quality">${newIdea.quality}</p>
+        <p class="quality" aria-label="quality">${newIdea.quality}</p>
       </div>  
       <hr />
     </article>`);
