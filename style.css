@@ -38,7 +38,7 @@ textarea {
   border: 2px solid #d1d8d9;
   width: 560px;
   padding-left: 5px;
-  overflow: scroll;
+  overflow: ellipsis;
   height: 34px;
 }
 
@@ -56,6 +56,10 @@ hr {
 h2 {
   display: inline-block;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
 }
 
 h3 {
@@ -127,6 +131,7 @@ section {
 .body-text {
   color: #939598;
   vertical-align: middle;
+  overflow: scroll;
 }
 
 .upvote-button {
@@ -173,13 +178,20 @@ section {
   header {
     height: 280px;
   }
+  
   h1 { 
-  font-size: 33px;
-  padding: 15px 0;
+    font-size: 33px;
+    padding: 15px 0;
   }
+
+  h2 {
+    width: 80%;
+  }
+
   .input-body {
     height: 75px;
   }
+  
   .search-ideas-input {
     margin-top: 15px;
   }
