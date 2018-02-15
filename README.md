@@ -64,9 +64,11 @@ Desktop layout:
 ![Desktop Comp](/assets/desktop-comp.png)
 
 Mobile layout:
-![Mobile Comp](/mobile-comp1.png)
+
+![Mobile Comp](assets/mobile-comp1.png)
 
 Full Mobile: 
+
 ![Full Mobile Comp](/assets/full-mobile-comp.png)
 
 #### Project layouts
@@ -75,9 +77,11 @@ Desktop:
 ![Desktop Layout](/assets/desktop.png)
 
 Mobile:
+
 ![Mobile Layout](/assets/mobile1.png)
 
 Full Mobile:
+
 ![Full Mobile Layout](/assets/mobile2.png)
 
 
