@@ -15,9 +15,9 @@ header {
 }
 
 hr {
-    border-color: #d1d3d4;
-    border-top: none;
-    border-left: none;
+  border-color: #d1d3d4;
+  border-top: none;
+  border-left: none;
 }
 
 h1, 
@@ -58,13 +58,11 @@ textarea {
   border: 2px solid #d1d8d9;
   width: 560px;
   padding-left: 5px;
-  overflow: ellipsis;
   height: 34px;
 }
 
 section {
   max-height: 100vh;
-  overflow: scroll;
 }
 
 span {

@@ -38,8 +38,6 @@ function IdeaFactory(title, body) {
 function generateIdea(e) {
   e.preventDefault();
   var newIdea = new IdeaFactory($inputTitle.val(), $inputBody.val());
-  var userInputBody = $inputBody.val();
-  var userInputTitle = $inputTitle.val();
   
   prependIdea(newIdea);
   editIdea();
@@ -69,10 +67,16 @@ function setInLocalStorage(newStorage) {
     body: newStorage.body,
     quality: newStorage.quality,
   };
-  console.log(ideaToStore)
   var stringifedIdeaToStore = JSON.stringify(ideaToStore);
 
   localStorage.setItem(newStorage.id, stringifedIdeaToStore);
+};
+
+function resetForm() {
+  $inputTitle.val('');  
+  $inputBody.val('');
+  $inputTitle.focus();
+  $saveButton.attr('disabled', '');
 };
 
 function editIdea() {
@@ -95,13 +99,6 @@ function saveEdit() {
     parsedIdea[changedTarget] = userChange;
     localStorage.setItem(ideaId, JSON.stringify(parsedIdea))
   });
-};
-
-function resetForm() {
-  $inputTitle.val('');  
-  $inputBody.val('');
-  $inputTitle.focus();
-  $saveButton.attr('disabled', '');
 };
 
 function deleteIdea() {
@@ -167,20 +164,15 @@ function searchQualities() {
 
 function searchHelper(location) {
   var $newSearchInput = $searchInput.val().toUpperCase();
-  var $listOfQualities = $(location);
+  var $listOfMatchingCards = $(location);
   
-  for (var i = 0; i < $listOfQualities.length; i++) {
-    var $upperCaseQuality = $listOfQualities[i].innerText.toUpperCase()
-    if (($upperCaseQuality).includes($newSearchInput)) {
-      $(($listOfQualities[i]).closest('.idea')).show();
+  for (var i = 0; i < $listOfMatchingCards.length; i++) {
+    var $upperCaseMatch = $listOfMatchingCards[i].innerText.toUpperCase()
+    if (($upperCaseMatch).includes($newSearchInput)) {
+      $(($listOfMatchingCards[i]).closest('.idea')).show();
     } 
   }
 };
-
-//look into function for getting id and setting id and then updating properties in local storage using it's id
-
-
-
 
 
 
