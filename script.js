@@ -134,13 +134,9 @@ function downvoteIdea() {
 };
 
 function voteIdea(ideaId, setQuality) {
-  var retrievedIdea = localStorage.getItem(ideaId);
-  var parsedIdea = JSON.parse(retrievedIdea);
-  var ideaQuality = parsedIdea.quality;
-  ideaQuality = setQuality.text();
-  parsedIdea.quality = ideaQuality;
-  var updatedQuality = JSON.stringify(parsedIdea);
-  localStorage.setItem(ideaId, updatedQuality);
+  var parsedIdea = JSON.parse(localStorage.getItem(ideaId));
+  parsedIdea.quality = setQuality.text();
+  localStorage.setItem(ideaId, JSON.stringify(parsedIdea));
 };
 
 function searchIdeas() {
