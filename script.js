@@ -49,14 +49,14 @@ function generateIdea(e) {
 
 function prependIdea(input) {
   $('.idea-list').prepend(`<article id="${input.id}" class="idea">
-      <h2 contenteditable="true" name="title" aria-label="title">${input.title}</h2>
-      <button class="delete-button" aria-label="delete"></button>
-      <p class="body-text" contenteditable="true" name="body" aria-label="body">${input.body}</p>
+      <h2 contenteditable="true" name="title" aria-label="Idea title">${input.title}</h2>
+      <button class="delete-button" aria-label="Delete idea"></button>
+      <p class="body-text" contenteditable="true" name="body" aria-label="Idea body">${input.body}</p>
       <div>
-        <button class="upvote-button" aria-label="upvote"></button>
-        <button class="downvote-button" aria-label="downvote"></button>
+        <button class="upvote-button" aria-label="Upvote idea"></button>
+        <button class="downvote-button" aria-label="Downvote idea"></button>
         <h3>quality:</h3>
-        <p class="quality" aria-label="quality">${input.quality}</p>
+        <p class="quality" aria-label="Idea quality">${input.quality}</p>
       </div>  
       <hr />
     </article>`);
@@ -69,6 +69,7 @@ function setInLocalStorage(newStorage) {
     body: newStorage.body,
     quality: newStorage.quality,
   };
+  console.log(ideaToStore)
   var stringifedIdeaToStore = JSON.stringify(ideaToStore);
 
   localStorage.setItem(newStorage.id, stringifedIdeaToStore);
@@ -175,6 +176,8 @@ function searchHelper(location) {
     } 
   }
 };
+
+//look into function for getting id and setting id and then updating properties in local storage using it's id
 
 
 
