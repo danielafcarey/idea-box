@@ -5,9 +5,19 @@ body {
   margin: 0;
 }
 
+div {
+  line-height: 1px;
+}
+
 header {
   background-color: #e5f3f2;
   height: 300px;
+}
+
+hr {
+    border-color: #d1d3d4;
+    border-top: none;
+    border-left: none;
 }
 
 h1, 
@@ -25,9 +35,19 @@ h1 {
   font-size: 44px;
 }
 
-span {
-  font-family: 'Roboto Slab', serif;
-  color: #00a79d;
+h2 {
+  display: inline-block;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
+}
+
+h3 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-bottom: 20px;
 }
 
 input,
@@ -42,30 +62,19 @@ textarea {
   height: 34px;
 }
 
+section {
+  max-height: 100vh;
+  overflow: scroll;
+}
+
+span {
+  font-family: 'Roboto Slab', serif;
+  color: #00a79d;
+}
+
 textarea {
   resize: none;
   height: 32px;
-}
-
-hr {
-    border-color: #d1d3d4;
-    border-top: none;
-    border-left: none;
-}
-
-h2 {
-  display: inline-block;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 90%;
-}
-
-h3 {
-  display: inline-block;
-  vertical-align: middle;
-  padding-bottom: 20px
 }
 
 input::placeholder,
@@ -73,21 +82,35 @@ textarea::placeholder {
   color: #c5c6c8;
 }
 
-div {
-  line-height: 1px;
-}
-
-section {
-  max-height: 100vh;
+.body-text {
+  color: #939598;
+  vertical-align: middle;
   overflow: scroll;
 }
 
-.save-button:disabled {
-  background-color: #d1d8d9;
+.delete-button {
+  background: url("delete.svg") no-repeat;
+  float: right;
 }
-.save-button:hover:disabled {
-  background-color: #d1d8d9;
+
+.delete-button,
+.upvote-button,
+.downvote-button {
+  height: 30px;
+  width: 30px;
+  border: none;
 }
+
+.downvote-button {
+  background: url("downvote.svg") no-repeat;
+  margin-right: 15px;
+}
+
+.idea {
+  width: 570px;
+  margin: 20px auto;
+}
+
 .save-button {
   background-color: #00a79d;
   color: white;
@@ -102,24 +125,7 @@ section {
   margin-top: 29px;
   margin-bottom: 40px;
 }
-.delete-button,
-.upvote-button,
-.downvote-button {
-  height: 30px;
-  width: 30px;
-  border: none;
-}
 
-.delete-button {
-  background: url("delete.svg") no-repeat;
-  float: right
-
-}
-.idea {
-  width: 570px;
-  margin: 20px auto;
-
-}
 .quality {
   display: inline-block;
   vertical-align: middle; 
@@ -128,29 +134,14 @@ section {
   color: #6d6e71;
 }
 
-.body-text {
-  color: #939598;
-  vertical-align: middle;
-  overflow: scroll;
-}
-
 .upvote-button {
   background: url("upvote.svg") no-repeat;
   margin-right: 15px;
 }
 
-.downvote-button {
-  background: url("downvote.svg") no-repeat;
-  margin-right: 15px;
-}
 
 .delete-button:hover {
   background: url("delete-hover.svg");
-  transition: 1s;
-}
-
-.upvote-button:hover {
-  background: url("upvote-hover.svg");
   transition: 1s;
 }
 
@@ -159,8 +150,21 @@ section {
   transition: 1s;
 }
 
+.save-button:disabled {
+  background-color: #d1d8d9;
+}
+
+.save-button:hover:disabled {
+  background-color: #d1d8d9;
+}
+
 .save-button:hover {
   background-color: #045e55;
+  transition: 1s;
+}
+
+.upvote-button:hover {
+  background: url("upvote-hover.svg");
   transition: 1s;
 }
 
@@ -170,10 +174,12 @@ section {
   .idea {
     width: 74%;
   }
+
   .save-button {
     width: 78%;
   }
 }
+
 @media (max-width: 450px) {
   header {
     height: 280px;
