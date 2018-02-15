@@ -89,7 +89,7 @@ textarea::placeholder {
 }
 
 .delete-button {
-  background: url("delete.svg") no-repeat;
+  background: url("assets/delete.svg") no-repeat;
   float: right;
 }
 
@@ -102,7 +102,7 @@ textarea::placeholder {
 }
 
 .downvote-button {
-  background: url("downvote.svg") no-repeat;
+  background: url("assets/downvote.svg") no-repeat;
   margin-right: 15px;
 }
 
@@ -135,18 +135,18 @@ textarea::placeholder {
 }
 
 .upvote-button {
-  background: url("upvote.svg") no-repeat;
+  background: url("assets/upvote.svg") no-repeat;
   margin-right: 15px;
 }
 
 
 .delete-button:hover {
-  background: url("delete-hover.svg");
+  background: url("assets/delete-hover.svg");
   transition: 1s;
 }
 
 .downvote-button:hover {
-  background: url("downvote-hover.svg");
+  background: url("assets/downvote-hover.svg");
   transition: 1s;
 }
 
@@ -164,7 +164,7 @@ textarea::placeholder {
 }
 
 .upvote-button:hover {
-  background: url("upvote-hover.svg");
+  background: url("assets/upvote-hover.svg");
   transition: 1s;
 }
 
