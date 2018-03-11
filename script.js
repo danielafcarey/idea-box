@@ -1,3 +1,5 @@
+loacCardsFromStorage();
+
 var $inputTitle = $('.input-title');
 var $inputBody = $('.input-body');
 var $saveButton = $('.save-button');
@@ -12,13 +14,13 @@ $ideaList.on('click', '.delete-button', deleteIdea);
 $ideaList.on('click', '.upvote-button', upvoteIdea);
 $ideaList.on('click', '.downvote-button', downvoteIdea);
 
-$(document).ready(function() {
+function loacCardsFromStorage() {
   for(var i = 0; i < localStorage.length; i++) {
     var storedIdea = JSON.parse(localStorage.getItem(localStorage.key(i)))
     prependIdea(storedIdea);
   }
   editIdea();
-});
+};
 
 function enableSave() {
   if ($inputTitle.val().length > 0 && $inputBody.val().length > 0) {
@@ -28,7 +30,7 @@ function enableSave() {
   }
 };
 
-function IdeaFactory(title, body) {
+function Idea(title, body) {
   this.id = $.now();
   this.title = title;
   this.body = body;
@@ -37,7 +39,7 @@ function IdeaFactory(title, body) {
 
 function generateIdea(e) {
   e.preventDefault();
-  var newIdea = new IdeaFactory($inputTitle.val(), $inputBody.val());
+  var newIdea = new Idea($inputTitle.val(), $inputBody.val());
   
   prependIdea(newIdea);
   editIdea();
