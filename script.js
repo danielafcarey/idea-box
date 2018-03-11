@@ -5,8 +5,8 @@ $('.input-body').on('keyup', toggleEnableSave);
 $('.save-button').on('click', generateNewIdea);
 $('.search-ideas-input').on('keyup', searchIdeas);
 $('.idea-list').on('click', '.delete-button', deleteIdea);
-$('.idea-list').on('click', '.upvote-button', upvoteIdea);
-$('.idea-list').on('click', '.downvote-button', downvoteIdea);
+$('.idea-list').on('click', '.upvote-button', getNewQuality);
+$('.idea-list').on('click', '.downvote-button', getNewQuality);
 
 function loacCardsFromStorage() {
   for(var i = 0; i < localStorage.length; i++) {
@@ -103,35 +103,30 @@ function deleteIdea() {
   localStorage.removeItem(ideaId)
 };
 
-function upvoteIdea() {
+function getNewQuality() {
+  var qualitiesArray = [
+    'swill',
+    'plausible',
+    'genius'
+  ]
+  var voteDirection = $(this).attr('class');
   var theSetQuality = $(this).siblings('p');
-  var ideaId = ($(this).parents('.idea'))[0].id;
-  
-  if (theSetQuality.text() === 'swill') {
-    theSetQuality.text('plausible');
-  } else if (theSetQuality.text() === 'plausible') {
-    theSetQuality.text('genius');
+  var theSetQualityIndex = qualitiesArray.indexOf(theSetQuality.text());
+  var ideaId = $(this).parents('.idea')[0].id;
+
+  if (voteDirection === 'upvote-button' && theSetQualityIndex !== qualitiesArray.length - 1) {
+    theSetQuality.text(qualitiesArray[theSetQualityIndex + 1])
+  } else if (voteDirection === 'downvote-button' && theSetQualityIndex !== 0) {
+    theSetQuality.text(qualitiesArray[theSetQualityIndex - 1])
   }
 
-  changeIdeaQuality(ideaId, theSetQuality);
-};
+  changeIdeaQualityInStorage(ideaId, theSetQuality);
 
-function downvoteIdea() {
-  var theSetQuality = $(this).siblings('p');
-  var ideaId = ($(this).parents('.idea'))[0].id;
+}
 
-  if (theSetQuality.text() === 'genius') {
-    theSetQuality.text('plausible');
-  } else if (theSetQuality.text() === 'plausible') {
-    theSetQuality.text('swill');
-  }
-
-  changeIdeaQuality(ideaId, theSetQuality);
-};
-
-function changeIdeaQuality(ideaId, theSetQuality) {
+function changeIdeaQualityInStorage(ideaId, theNewQuality) {
   var parsedIdea = JSON.parse(localStorage.getItem(ideaId));
-  parsedIdea.quality = theSetQuality.text();
+  parsedIdea.quality = theNewQuality.text();
   localStorage.setItem(ideaId, JSON.stringify(parsedIdea));
 };
 
