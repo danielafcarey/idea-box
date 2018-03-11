@@ -1,8 +1,8 @@
 loacCardsFromStorage();
 
-$('.input-title').on('keyup', enableSave);
-$('.input-body').on('keyup', enableSave);
-$('.save-button').on('click', generateIdea);
+$('.input-title').on('keyup', toggleEnableSave);
+$('.input-body').on('keyup', toggleEnableSave);
+$('.save-button').on('click', generateNewIdea);
 $('.search-ideas-input').on('keyup', searchIdeas);
 $('.idea-list').on('click', '.delete-button', deleteIdea);
 $('.idea-list').on('click', '.upvote-button', upvoteIdea);
@@ -16,7 +16,7 @@ function loacCardsFromStorage() {
   editIdea();
 };
 
-function enableSave() {
+function toggleEnableSave() {
   if ($('.input-title').val().length > 0 && $('.input-body').val().length > 0) {
     $('.save-button').removeAttr('disabled')
   } else {
@@ -31,7 +31,7 @@ function Idea(title, body) {
   this.quality = 'swill'
 };
 
-function generateIdea(e) {
+function generateNewIdea(e) {
   e.preventDefault();
   var newIdea = new Idea($('.input-title').val(), $('.input-body').val());
   
@@ -104,34 +104,34 @@ function deleteIdea() {
 };
 
 function upvoteIdea() {
-  var setQuality = $(this).siblings('p');
+  var theSetQuality = $(this).siblings('p');
   var ideaId = ($(this).parents('.idea'))[0].id;
   
-  if (setQuality.text() === 'swill') {
-    setQuality.text('plausible');
-  } else if (setQuality.text() === 'plausible') {
-    setQuality.text('genius');
+  if (theSetQuality.text() === 'swill') {
+    theSetQuality.text('plausible');
+  } else if (theSetQuality.text() === 'plausible') {
+    theSetQuality.text('genius');
   }
 
-  voteIdea(ideaId, setQuality);
+  changeIdeaQuality(ideaId, theSetQuality);
 };
 
 function downvoteIdea() {
-  var setQuality = $(this).siblings('p');
+  var theSetQuality = $(this).siblings('p');
   var ideaId = ($(this).parents('.idea'))[0].id;
 
-  if (setQuality.text() === 'genius') {
-    setQuality.text('plausible');
-  } else if (setQuality.text() === 'plausible') {
-    setQuality.text('swill');
+  if (theSetQuality.text() === 'genius') {
+    theSetQuality.text('plausible');
+  } else if (theSetQuality.text() === 'plausible') {
+    theSetQuality.text('swill');
   }
 
-  voteIdea(ideaId, setQuality);
+  changeIdeaQuality(ideaId, theSetQuality);
 };
 
-function voteIdea(ideaId, setQuality) {
+function changeIdeaQuality(ideaId, theSetQuality) {
   var parsedIdea = JSON.parse(localStorage.getItem(ideaId));
-  parsedIdea.quality = setQuality.text();
+  parsedIdea.quality = theSetQuality.text();
   localStorage.setItem(ideaId, JSON.stringify(parsedIdea));
 };
 
