@@ -1,18 +1,12 @@
 loacCardsFromStorage();
 
-var $inputTitle = $('.input-title');
-var $inputBody = $('.input-body');
-var $saveButton = $('.save-button');
-var $searchInput = $('.search-ideas-input');
-var $ideaList = $('.idea-list');
-
-$inputTitle.on('keyup', enableSave);
-$inputBody.on('keyup', enableSave);
-$saveButton.on('click', generateIdea);
-$searchInput.on('keyup', searchIdeas);
-$ideaList.on('click', '.delete-button', deleteIdea);
-$ideaList.on('click', '.upvote-button', upvoteIdea);
-$ideaList.on('click', '.downvote-button', downvoteIdea);
+$('.input-title').on('keyup', enableSave);
+$('.input-body').on('keyup', enableSave);
+$('.save-button').on('click', generateIdea);
+$('.search-ideas-input').on('keyup', searchIdeas);
+$('.idea-list').on('click', '.delete-button', deleteIdea);
+$('.idea-list').on('click', '.upvote-button', upvoteIdea);
+$('.idea-list').on('click', '.downvote-button', downvoteIdea);
 
 function loacCardsFromStorage() {
   for(var i = 0; i < localStorage.length; i++) {
@@ -23,10 +17,10 @@ function loacCardsFromStorage() {
 };
 
 function enableSave() {
-  if ($inputTitle.val().length > 0 && $inputBody.val().length > 0) {
-    $saveButton.removeAttr('disabled')
+  if ($('.input-title').val().length > 0 && $('.input-body').val().length > 0) {
+    $('.save-button').removeAttr('disabled')
   } else {
-    $saveButton.attr('disabled', '')
+    $('.save-button').attr('disabled', '')
   }
 };
 
@@ -39,7 +33,7 @@ function Idea(title, body) {
 
 function generateIdea(e) {
   e.preventDefault();
-  var newIdea = new Idea($inputTitle.val(), $inputBody.val());
+  var newIdea = new Idea($('.input-title').val(), $('.input-body').val());
   
   prependIdea(newIdea);
   editIdea();
@@ -75,10 +69,10 @@ function setInLocalStorage(newStorage) {
 };
 
 function resetForm() {
-  $inputTitle.val('');  
-  $inputBody.val('');
-  $inputTitle.focus();
-  $saveButton.attr('disabled', '');
+  $('.input-title').val('');  
+  $('.input-body').val('');
+  $('.input-title').focus();
+  $('.save-button').attr('disabled', '');
 };
 
 function editIdea() {
@@ -161,7 +155,7 @@ function searchQualities() {
 };
 
 function searchHelper(location) {
-  var $newSearchInput = $searchInput.val().toUpperCase();
+  var $newSearchInput = $('.search-ideas-input').val().toUpperCase();
   var $listOfMatchingCards = $(location);
   
   for (var i = 0; i < $listOfMatchingCards.length; i++) {
